@@ -1,26 +1,30 @@
 body {
     margin: 0;
-    overflow: hidden;
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    box-sizing: border-box; /* Ensure consistent box model */
 }
 
 .video-container {
-position: fixed; /* Ensure it's fixed relative to the viewport */
-top: 0;
-left: 0;
+    position: fixed; /* Ensure it's fixed relative to the viewport */
     width: 100vw; /* Full viewport width */
-    height: calc(100vh - 50px); /* Adjust for taskbar height, change 50px to your taskbar height */
+    height: 100vh; /* Full viewport height */
     overflow: hidden; /* Hide anything that overflows */
-    z-index: 9999; /* Ensure it’s on top of other content */
 }
 
 #video {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Cover the entire container */
+    box-sizing: border-box; /* Ensure consistent box model */
+    border: 0; /* Ensure no border artifact */
+    position: absolute; /* Ensure proper positioning */
+    top: 0;
+    left: 0;
 }
 
 .control-button, .control-button-2 {

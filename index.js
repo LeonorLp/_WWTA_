@@ -1,4 +1,5 @@
 window.onload = () => {
+    const videoContainer = document.querySelector('.video-container');
     const video = document.getElementById("video");
     const playBtn = document.getElementById("playBtn");
     const pauseBtn = document.getElementById("pauseBtn");
@@ -6,13 +7,9 @@ window.onload = () => {
 
     let hidePauseTimeout;
 
-    // Initial setup
-    playBtn.classList.remove('hidden'); // Show the play button initially
-    pauseBtn.classList.add('hidden'); // Hide the pause button initially
-    play2Btn.classList.add('hidden'); // Hide the secondary play button initially
-
-    // Play button logic
+    // Play button logic with fullscreen request
     playBtn.addEventListener('click', () => {
+        requestFullscreen(videoContainer); // Request fullscreen mode
         video.play();
         playBtn.classList.add('hidden'); // Hide primary play button
         // The pause button will be shown when clicking anywhere on the screen
@@ -20,6 +17,7 @@ window.onload = () => {
     });
 
     play2Btn.addEventListener('click', () => {
+        requestFullscreen(videoContainer); // Request fullscreen mode
         video.play();
         play2Btn.classList.add('hidden'); // Hide secondary play button
         // The pause button will be shown when clicking anywhere on the screen
@@ -36,6 +34,19 @@ window.onload = () => {
         }
     });
 
+    // Function to request fullscreen
+    function requestFullscreen(element) {
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) { // Firefox
+            element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+            element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) { // IE/Edge
+            element.msRequestFullscreen();
+        }
+    }
+
     // Function to show the pause button and set a timeout to hide it
     function showPauseBtn(event) {
         if (!video.paused) {
@@ -49,7 +60,7 @@ window.onload = () => {
         clearTimeout(hidePauseTimeout); // Clear any existing timeout
         hidePauseTimeout = setTimeout(() => {
             pauseBtn.classList.add('hidden'); // Hide the pause button after 5 seconds
-        }, 5000); // 5000 milliseconds = 5 seconds
+        }, 3000); // 3000 milliseconds = 3 seconds
     }
 
     // Initial setup for hide timeout
