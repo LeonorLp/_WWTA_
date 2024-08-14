@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.video-container {
+position: fixed; /* Ensure it's fixed relative to the viewport */
+top: 0;
+left: 0;
+    width: 100vw; /* Full viewport width */
+    height: calc(100vh - 50px); /* Adjust for taskbar height, change 50px to your taskbar height */
+    overflow: hidden; /* Hide anything that overflows */
+    z-index: 9999; /* Ensure it’s on top of other content */
+}
+
+#video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the entire container */
+}
+
+.control-button, .control-button-2 {
+    background-color: transparent; /* No background color */
+    border-radius: 50%;
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    opacity: 0.8;
+    font-size: 0; /* Hide text content */
+    position: absolute;
+}
+
+#playBtn {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid white; /* White border */
+}
+
+#pauseBtn, #play2Btn {
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid darkred; /* Dark red border */
+    background-color: white;
+}
+
+#playBtn.hidden, #play2Btn.hidden, #pauseBtn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#playBtn::before {
+    content: "\25B6"; /* Unicode for play icon */
+    font-size: 40px;
+    color: white; /* White icon */
+}
+
+#play2Btn::before {
+    content: "\25B6"; /* Unicode for play icon */
+    font-size: 40px;
+    color: darkred; /* Dark red icon */
+    
+}
+
+#pauseBtn::before {
+    content: "\23F8"; /* Unicode for pause icon */
+    font-size: 30px;
+    color: darkred; /* Dark red icon */
+    
+}
