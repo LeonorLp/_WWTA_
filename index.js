@@ -7,6 +7,43 @@ window.onload = () => {
 
     let hidePauseTimeout;
 
+    // Function to split video file into smaller parts
+    function splitVideo(file, chunkSize) {
+        const fileSize = file.size;
+        let start = 0;
+        let index = 0;
+
+        while (start < fileSize) {
+            const chunk = file.slice(start, start + chunkSize);
+            const chunkFileName = `video_part_${index}.mp4`;
+
+            // Example of creating a download link for each chunk
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(chunk);
+            link.download = chunkFileName;
+            link.innerText = `Download ${chunkFileName}`;
+            document.body.appendChild(link);
+            document.body.appendChild(document.createElement('br'));
+
+            start += chunkSize;
+            index++;
+        }
+    }
+
+    // Split the video when the page loads
+    document.getElementById('video').addEventListener('loadeddata', () => {
+        const videoFile = video.querySelector('source').src;
+
+        // Fetch the video as a Blob object
+        fetch(videoFile)
+            .then(response => response.blob())
+            .then(blob => {
+                // Split the video into 100MB parts
+                const chunkSize = 100 * 1024 * 1024;
+                splitVideo(blob, chunkSize);
+            });
+    });
+
     // Play button logic with fullscreen request
     playBtn.addEventListener('click', () => {
         requestFullscreen(videoContainer); // Request fullscreen mode
