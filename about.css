@@ -12,52 +12,6 @@ body {
     font-family: 'Sundowners', sans-serif;
 }
 
-.video-container {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
-
-#video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.control-button, .control-button-2 {
-    border-radius: 50%;
-    cursor: pointer;
-    width: 80px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    z-index: 3; /* Ensure buttons are above the overlay */
-    transition: transform 0.5s ease; /* Smooth transition for button movement */
-}
-
-#playBtn {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#pauseBtn, #play2Btn {
-    bottom: 5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#playBtn.hidden, #play2Btn.hidden, #pauseBtn.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
 #menu {
     z-index: 4;
     position: fixed;
@@ -150,4 +104,3 @@ body {
 #overlayNav.change {
     width: 100%;
 }
-

@@ -1,48 +1,63 @@
-window.onload = () => {
-    const videoContainer = document.querySelector('.video-container');
-    const video = document.getElementById("video");
-    const playBtn = document.getElementById("playBtn");
-    const pauseBtn = document.getElementById("pauseBtn");
-    const play2Btn = document.getElementById("play2Btn");
+const video = document.getElementById('video');
+const playBtn = document.getElementById('playBtn');
+const pauseBtn = document.getElementById('pauseBtn');
+const play2Btn = document.getElementById('play2Btn');
 
-    let hidePauseTimeout;
+// Define the time ranges for each "segment" of the video (in seconds)
+const segments = [
+    { start: 0, end: 30 },  // First 30 seconds
+    { start: 30, end: 60 }  // Next 30 seconds
+];
+let currentSegment = 0;
 
-    // Function to split video file into smaller parts
-    function splitVideo(file, chunkSize) {
-        const fileSize = file.size;
-        let start = 0;
-        let index = 0;
+playBtn.addEventListener('click', playSegment);
+pauseBtn.addEventListener('click', pauseVideo);
+play2Btn.addEventListener('click', playSegment);
 
-        while (start < fileSize) {
-            const chunk = file.slice(start, start + chunkSize);
-            const chunkFileName = `video_part_${index}.mp4`;
+video.addEventListener('timeupdate', checkSegmentEnd);
 
-            // Example of creating a download link for each chunk
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(chunk);
-            link.download = chunkFileName;
-            link.innerText = `Download ${chunkFileName}`;
-            document.body.appendChild(link);
-            document.body.appendChild(document.createElement('br'));
+function playSegment() {
+    // Set the video's current time to the start of the current segment
+    video.currentTime = segments[currentSegment].start;
+    video.play();
 
-            start += chunkSize;
-            index++;
+    // Update button visibility
+    playBtn.classList.add('hidden');
+    pauseBtn.classList.remove('hidden');
+    play2Btn.classList.add('hidden');
+}
+
+function pauseVideo() {
+    video.pause();
+
+    // Update button visibility
+    playBtn.classList.remove('hidden');
+    pauseBtn.classList.add('hidden');
+    play2Btn.classList.remove('hidden');
+}
+
+function checkSegmentEnd() {
+    // Check if the video has reached the end of the current segment
+    if (video.currentTime >= segments[currentSegment].end) {
+        video.pause();
+        video.currentTime = segments[currentSegment].end; // Ensure video doesn't exceed this segment
+
+        // Update button visibility
+        playBtn.classList.add('hidden');
+        pauseBtn.classList.add('hidden');
+        play2Btn.classList.remove('hidden');
+
+        // Move to the next segment for the next play
+        if (currentSegment < segments.length - 1) {
+            currentSegment++;
+        } else {
+            // If the last segment ends, reset to the first segment
+            currentSegment = 0;
         }
     }
+}
 
-    // Split the video when the page loads
-    document.getElementById('video').addEventListener('loadeddata', () => {
-        const videoFile = video.querySelector('source').src;
 
-        // Fetch the video as a Blob object
-        fetch(videoFile)
-            .then(response => response.blob())
-            .then(blob => {
-                // Split the video into 100MB parts
-                const chunkSize = 100 * 1024 * 1024;
-                splitVideo(blob, chunkSize);
-            });
-    });
 
     // Play button logic with fullscreen request
     playBtn.addEventListener('click', () => {
@@ -110,4 +125,25 @@ window.onload = () => {
         pauseBtn.classList.add('hidden'); // Hide pause button when video is paused
         clearTimeout(hidePauseTimeout); // Clear the timeout if the video is paused
     });
-};
+
+function menuOnClick() {
+    document.getElementById("menu-bar").classList.toggle("change");
+    document.getElementById("overlayNav").classList.toggle("change");
+    document.getElementById("menu").classList.toggle("change"); 
+
+    // Move play and pause buttons along with the menu icon
+    document.getElementById("playBtn").classList.toggle("change");
+    document.getElementById("pauseBtn").classList.toggle("change");
+    document.getElementById("play2Btn").classList.toggle("change");
+}
+
+function menuOnClick() {
+    document.getElementById("menu-bar").classList.toggle("change");
+    document.getElementById("overlayNav").classList.toggle("change");
+    document.getElementById("menu").classList.toggle("change");
+
+    // Add or remove the 'menu-open' class to handle button movement independently
+    document.body.classList.toggle("menu-open");
+}
+
+

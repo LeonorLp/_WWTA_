@@ -8,14 +8,31 @@
     <script src="index.js" defer></script> <!-- Ensure JavaScript is loaded after HTML -->
 </head>
 <body>
+
+    <div id="menu">
+        <div id="menu-bar" onclick="menuOnClick()">
+          <div id="bar1" class="bar"></div>
+          <div id="bar2" class="bar"></div>
+          <div id="bar3" class="bar"></div>
+        </div>
+    </div>
+      
+    <nav id="overlayNav" class="overlay-nav">
+        <ul>
+            <li><a href="index.html">Story</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#">Contacts</a></li>
+            <li><a href="#">Credits</a></li>
+        </ul>
+    </nav>
     <div class="video-container">
         <video id="video">
-            <source src="video/wwwta.mp4" type="video/mp4">
+            <source src="video/_wwta_v4.mp4" type="video/mp4">
             Está a dar erro
         </video>
-        <button id="playBtn" class="control-button">Play</button>
-        <button id="pauseBtn" class="control-button hidden">Pause</button>
-        <button id="play2Btn" class="control-button-2 hidden">Play</button>
+        <button id="playBtn" class="control-button"><img src="img/play.png" alt="Play Button" style="width:100px; height:auto;"></button>
+        <button id="pauseBtn" class="control-button hidden"><img src="img/pause.png" alt="Pause Button" style="width:100px; height:auto;"></button>
+        <button id="play2Btn" class="control-button-2 hidden"><img src="img/play.png" alt="Play Button" style="width:100px; height:auto;"></button>
     </div>
 </body>
 </html>
