@@ -5,34 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Where the Wild Things Are</title>
     <link rel="stylesheet" href="index.css">
-    <script src="index.js" defer></script> <!-- Ensure JavaScript is loaded after HTML -->
+    <script src="index.js" defer></script>
 </head>
 <body>
 
     <div id="menu">
         <div id="menu-bar" onclick="menuOnClick()">
-          <div id="bar1" class="bar"></div>
-          <div id="bar2" class="bar"></div>
-          <div id="bar3" class="bar"></div>
+            <div class="bar" id="bar1"></div>
+            <div class="bar" id="bar2"></div>
+            <div class="bar" id="bar3"></div>
         </div>
     </div>
-      
+
     <nav id="overlayNav" class="overlay-nav">
         <ul>
             <li><a href="index.html">Story</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="#">Contacts</a></li>
-            <li><a href="#">Credits</a></li>
+            <li><a href="contacts.html">Contacts</a></li>
+            <li><a href="credits.html">Credits</a></li>
         </ul>
     </nav>
-    <div class="video-container">
+    <div class="video-container" id="videoContainer">
         <video id="video">
-            <source src="video/_wwta_v4.mp4" type="video/mp4">
-            Está a dar erro
+            <source src="WWTAFINAL.mp4" type="video/mp4">
+            Your browser does not support the video tag.
         </video>
-        <button id="playBtn" class="control-button"><img src="img/play.png" alt="Play Button" style="width:100px; height:auto;"></button>
-        <button id="pauseBtn" class="control-button hidden"><img src="img/pause.png" alt="Pause Button" style="width:100px; height:auto;"></button>
-        <button id="play2Btn" class="control-button-2 hidden"><img src="img/play.png" alt="Play Button" style="width:100px; height:auto;"></button>
+        <video id="video2">
+            <source src="_wwta_v4.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <button id="homeBtn" class="control-button-5 hidden">
+            <img src="home.png" alt="Home Button" style="width:60px; height:auto;">
+        </button> 
+        
+        <button id="playBtn" class="control-button-1 hidden">
+            <img src="play.png" alt="Play Button" style="width:90px; height:auto;">
+        </button>
+
+                <button id="pauseBtn" class="control-button hidden">
+            <img src="pause.png" alt="Pause Button" style="width:80px; height:auto;">
+        </button>
+
+        <button id="play2Btn" class="control-button-2 hidden">
+            <img src="play.png" alt="Play Button" style="width:80px; height:auto;">
+        </button>
     </div>
+
 </body>
 </html>

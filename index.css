@@ -1,12 +1,11 @@
 @font-face {
     font-family: 'Sundowners';
-    src: url('font/Sundowners.ttf') format('truetype')
+    src: url('Sundowners.ttf') format('truetype');
 }
 
 body {
     margin: 0;
-    overflow-y: hidden;
-    overflow-x: hidden;
+    overflow: hidden;
     height: 100vh;
     box-sizing: border-box;
     font-family: 'Sundowners', sans-serif;
@@ -19,7 +18,7 @@ body {
     overflow: hidden;
 }
 
-#video {
+#video, #videoA, #videoC, #videoCd {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -28,24 +27,26 @@ body {
     left: 0;
 }
 
-.control-button, .control-button-2 {
+.control-button, .control-button-2, .control-button-1, .control-button-5 {
+    background-color: transparent; 
     border-radius: 50%;
+    border: none;
     cursor: pointer;
-    width: 80px;
-    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    font-size: 0; /* Hide text content */
     position: absolute;
-    z-index: 3; /* Ensure buttons are above the overlay */
-    transition: transform 0.5s ease; /* Smooth transition for button movement */
 }
 
-#playBtn {
-    top: 50%;
-    left: 50%;
+#homeBtn {
+    top: 10%;
+    left: 5%;
     transform: translate(-50%, -50%);
 }
+
 
 #pauseBtn, #play2Btn {
     bottom: 5%;
@@ -53,17 +54,32 @@ body {
     transform: translate(-50%, -50%);
 }
 
-#playBtn.hidden, #play2Btn.hidden, #pauseBtn.hidden {
+#playBtn{
+    bottom: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.hidden {
     opacity: 0;
     pointer-events: none;
 }
 
+.fullscreen #menu {
+    display: flex;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+}
+
 #menu {
-    z-index: 4;
+    z-index: 10;
     position: fixed;
     top: 30px;
     left: 20px;
     transition: transform 0.5s ease;
+    display: flex;
 }
 
 #menu-bar {
@@ -89,7 +105,8 @@ body {
     transform: translateY(4px);
 }
 
-/* Fullscreen Overlay Navigation Menu */
+/* Your existing CSS */
+
 .overlay-nav {
     height: 100%;
     width: 0;
@@ -115,7 +132,6 @@ body {
 
 .overlay-nav ul li {
     margin: 20px 0;
-    
 }
 
 .overlay-nav ul li a {
@@ -129,7 +145,6 @@ body {
     color: #6e2121;
 }
 
-/* Menu Bar Transformations on Click */
 .change .bar {
     background-color: #FFFAEE;
 }
@@ -146,8 +161,29 @@ body {
     transform: translateY(-6px) rotateZ(45deg);
 }
 
-/* Slide-in effect */
-#overlayNav.change {
+/* Ensure .change class is correct */
+.overlay-nav.change {
     width: 100%;
+}
+
+.buttonT {
+    color: #FFFAEE; /* Same color as your menu text */
+    font-size: 25px; /* Adjust font size as needed */
+    text-align: center;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 150px; /* Same as the button width */
+    left: 50%; /* Center the text under the button */
+    margin-top: 10px; /* Adjust the space between button and text */
+}
+
+#Ntext {
+    top: 55%; /* Adjust this value to position the text below the button */
+    left: 40%;
+}
+
+#Wtext {
+    top: 55%; /* Adjust this value to position the text below the button */
+    left: 60%;
 }
 
