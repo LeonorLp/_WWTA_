@@ -1,6 +1,5 @@
 // Select the video elements and control buttons
 const video = document.getElementById('video');
-const video2 = document.getElementById('video2');
 const playBtn = document.getElementById('playBtn');
 const pauseBtn = document.getElementById('pauseBtn');
 const play2Btn = document.getElementById('play2Btn');
@@ -47,14 +46,12 @@ playBtn.classList.remove('hidden'); // Ensure the play button is visible initial
 playBtn.addEventListener('click', () => {
     requestFullscreen(videoContainer); // Request fullscreen on play
     video.play();
-    video2.play();
     hideControlButtons(); // Hide all buttons while playing
 });
 
 // Pause button click handler
 pauseBtn.addEventListener('click', () => {
     video.pause();
-    video2.pause();
     pauseBtn.classList.add('hidden'); // Hide the pause button
     play2Btn.classList.remove('hidden'); // Show the play2 button
     showControlButtons(); // Ensure home button is visible
@@ -63,21 +60,18 @@ pauseBtn.addEventListener('click', () => {
 // Play2 button click handler (for resuming)
 play2Btn.addEventListener('click', () => {
     video.play();
-    video2.play();
     hideControlButtons(); // Hide all buttons when resumed
 });
 
 // Ensure buttons are hidden when videos start playing
 video.addEventListener('play', hideControlButtons);
-video2.addEventListener('play', hideControlButtons);
 
 // Ensure buttons are shown when videos are paused
 video.addEventListener('pause', showControlButtons);
-video2.addEventListener('pause', showControlButtons);
 
 // Show pause button when the user clicks anywhere on the screen
 document.addEventListener('click', () => {
-    if (!video.paused || !video2.paused) {
+    if (!video.paused) {
         showControlButtons();
     }
 });
